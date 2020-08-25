@@ -189,7 +189,7 @@ section{
     height: 60px;
     margin-bottom: 25px;
 }
-.hourly-description, .hourly-temperature, .hourly-temperature-feel{
+.hourly-description, .hourly-temperature, .hourly-temperature-feel, .hourly-wind{
     margin: 0;
 }
 .hourly-weather-list-titles :last-child {

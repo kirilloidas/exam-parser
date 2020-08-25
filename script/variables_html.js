@@ -1,3 +1,4 @@
+let header_search = document.getElementsByClassName('header-search')[0];
 let this_date = document.getElementsByClassName('current-weather-date')[0];
 let current_weather_date = document.getElementsByClassName('current-weather-date')[0];
 let current_weather_icon = document.getElementsByClassName('current-weather-icon')[0];
@@ -12,5 +13,6 @@ let hourly_icons = document.getElementsByClassName('hourly-weather-list-values__
 let hourly_description = document.getElementsByClassName('hourly-description');
 let hourly_temperature = document.getElementsByClassName('hourly-temperature');
 let hourly_temperature_feel = document.getElementsByClassName('hourly-temperature-feel');
+let hourly_wind = document.getElementsByClassName('hourly-wind');
 let today_link = document.getElementById('today-link');
 let five_day_link = document.getElementById('five-day-link');

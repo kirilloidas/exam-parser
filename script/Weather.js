@@ -157,6 +157,68 @@ export class HourlyWeather {
 
 export class Wind {
     constructor() {
-        
+        this._windSpeed,
+        this._windDirection
+    }
+
+    static setWindSpeed(weather) {
+        let arr = [];
+        let a = 0;
+        for(let i = 0; i < 24; i = i + 4) {
+            arr[a] = weather.hourly[i].wind_speed;
+            a++;
+        }
+        this._windSpeed = arr;
+    }
+
+    static getWindSpeed() {
+        return this._windSpeed;
+    }
+
+    static setWindDirection(weather) {
+        let arr = [];
+        let a = 0;
+        for(let i = 0; i < 24; i = i + 4) {
+            let direction = weather.hourly[i].wind_deg;
+            if(direction > 348.75 && direction < 11.25) {
+                arr[a] = 'N';
+            } else if (direction > 11.25 && direction < 33.75) {
+                arr[a] = 'NNE';
+            } else if (direction > 33.75 && direction < 56.25) {
+                arr[a] = 'NE';
+            } else if (direction > 56.25 && direction < 78.75) {
+                arr[a] = 'ENE';
+            } else if (direction > 78.75 && direction < 101.25) {
+                arr[a] = 'E';
+            } else if (direction > 101.25 && direction < 123.75) {
+                arr[a] = 'ESE';
+            } else if (direction > 123.75 && direction < 146.25) {
+                arr[a] = 'SE';
+            } else if (direction > 146.25 && direction < 168.75) {
+                arr[a] = 'SSE';
+            } else if (direction > 168.75 && direction < 191.25) {
+                arr[a] = 'S';
+            } else if (direction > 191.25 && direction < 213.75) {
+                arr[a] = 'SSW';
+            } else if (direction > 213.75 && direction < 236.25) {
+                arr[a] = 'SW';
+            } else if (direction > 236.25 && direction < 258.75) {
+                arr[a] = 'WSW';
+            } else if (direction > 258.75 && direction < 281.25) {
+                arr[a] = 'W';
+            } else if (direction > 281.25 && direction < 303.75) {
+                arr[a] = 'WNW';
+            } else if (direction > 303.75 && direction < 326.25) {
+                arr[a] = 'NW';
+            } else if (direction > 326.25 && direction < 348.75) {
+                arr[a] = 'NNW';
+            }
+            a++;
+        }
+        this._windDirection = arr;
+    }
+
+    static getWindDirection() {
+        return this._windDirection;
     }
 }
