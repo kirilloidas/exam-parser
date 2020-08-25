@@ -12,3 +12,5 @@ let hourly_icons = document.getElementsByClassName('hourly-weather-list-values__
 let hourly_description = document.getElementsByClassName('hourly-description');
 let hourly_temperature = document.getElementsByClassName('hourly-temperature');
 let hourly_temperature_feel = document.getElementsByClassName('hourly-temperature-feel');
+let today_link = document.getElementById('today-link');
+let five_day_link = document.getElementById('five-day-link');

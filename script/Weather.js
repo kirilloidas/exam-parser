@@ -129,6 +129,7 @@ export class HourlyWeather {
         let a = 0;
         for(let i = 0; i < 23; i = i + 4) {
             arr[a] = `${(parseFloat(weather.hourly[i].temp) - 273.15).toFixed(2)} &#8451`;
+            a++;
         }
         this._temperatures = arr;
     }
@@ -142,6 +143,7 @@ export class HourlyWeather {
         let a = 0;
         for(let i = 0; i < 24; i = i + 4) {
             arr[a] = `${(parseFloat(weather.hourly[i].feels_like) - 273.15).toFixed(2)} &#8451`;
+            a++;
         }
         this._temperatureFeel = arr;
     }
@@ -150,5 +152,11 @@ export class HourlyWeather {
         return this._temperatureFeel;
     }
 
+}
 
+
+export class Wind {
+    constructor() {
+        
+    }
 }
