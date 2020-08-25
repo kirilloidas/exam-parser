@@ -26,7 +26,7 @@ export class CurrentWeather {
     }
 
     static setCurrentTemperature(weather) {
-        this._currentWeatherTemperature = `${(parseFloat(weather.current.temp) - 273.15).toFixed(2)} &#8451`;
+        this._currentWeatherTemperature = `${(parseFloat(weather.current.temp) - 273.15).toFixed(0)} &#8451`;
     }
 
     static getCurrentTemperature() {
@@ -34,7 +34,7 @@ export class CurrentWeather {
     }
 
     static setCurrentTempFeel(weather) {
-        this._temperatureFeel = `Real Feel ${(parseFloat(weather.current.feels_like) - 273.15).toFixed(2)} &#8451`;
+        this._temperatureFeel = `Real Feel ${(parseFloat(weather.current.feels_like) - 273.15).toFixed(0)} &#8451`;
     }
 
     static getCurrentTempFeel() {
@@ -128,7 +128,7 @@ export class HourlyWeather {
         let arr = [];
         let a = 0;
         for(let i = 0; i < 23; i = i + 4) {
-            arr[a] = `${(parseFloat(weather.hourly[i].temp) - 273.15).toFixed(2)} &#8451`;
+            arr[a] = `${(parseFloat(weather.hourly[i].temp) - 273.15).toFixed(0)} &#8451`;
             a++;
         }
         this._temperatures = arr;
@@ -142,7 +142,7 @@ export class HourlyWeather {
         let arr = [];
         let a = 0;
         for(let i = 0; i < 24; i = i + 4) {
-            arr[a] = `${(parseFloat(weather.hourly[i].feels_like) - 273.15).toFixed(2)} &#8451`;
+            arr[a] = `${(parseFloat(weather.hourly[i].feels_like) - 273.15).toFixed(0)} &#8451`;
             a++;
         }
         this._temperatureFeel = arr;
@@ -220,5 +220,50 @@ export class Wind {
 
     static getWindDirection() {
         return this._windDirection;
+    }
+
+}
+
+export class DailyWeather {
+    constructor() {
+        this._dailyIcons,
+        this._dailyTemp,
+        this._dailyDescription      
+    }
+
+    static setDailyIcons(weather) {
+        let arr = [];
+        for(let i = 0; i < 5; i++) {
+            arr[i] = `http://openweathermap.org/img/wn/${weather.daily[i].weather[0].icon}@2x.png`;
+        }
+        this._dailyIcons = arr;
+    }
+
+    static getDailyIcons() {
+        return this._dailyIcons;
+    }
+
+    static setDailyTemp(weather) {
+        let arr = [];
+        for(let i = 0; i < 5; i++) {
+            arr[i] = `${(parseFloat(weather.daily[i].temp.max) - 273.15).toFixed(0)} &#8451`;
+        }
+        this._dailyTemp = arr;
+    }
+
+    static getDailyTemp() {
+        return this._dailyTemp;
+    }
+
+    static setDailyDescription(weather) {
+        let arr = [];
+        for(let i = 0; i < 5; i++) {
+            arr[i] = weather.daily[i].weather[0].main;
+        }
+        this._dailyDescription = arr;
+    }
+
+    static getDailyDescription() {
+        return this._dailyDescription;
     }
 }

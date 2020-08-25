@@ -1,24 +1,18 @@
 import { Initialization } from './Initialization.js';
-import { CurrentWeather, HourlyWeather, Wind } from './Weather.js';
-import { DateComponent } from './DateComponent.js';
+import { CurrentWeather, HourlyWeather, Wind, DailyWeather} from './Weather.js';
+import { DateComponent, DaysWeather } from './DateComponent.js';
 import { Search } from './Search.js';
 
 window.addEventListener('load', () => {
 
-    // let initialization = new Initialization();
-    
-    // Initialization.initializationAjax();
-
     document.addEventListener('keydown', function(event) {
         if(event.code == 'Enter') {
             Search.setCityCoordinates(header_search.value);
-            Insert();
+            insert();
         }
-        // console.log(event.code);
     });
     
-    // 1598015293067    {lon: 30.52, lat: 50.43}
-    function Insert() {
+    function insert() {
         if(document.title == 'Weater-today') {
             setTimeout(() => {
                     current_weather_icon.src = CurrentWeather.getCurrentIcon();
@@ -40,8 +34,16 @@ window.addEventListener('load', () => {
                     }
     
             }, 1000);
-        } else {
-            
+        } else if (document.title == '5-day-forecast') {
+            setTimeout(() => {
+                for(let i = 0; i < 5; i++) {
+                    item_title[i].innerHTML = DaysWeather.getDayOfWeek()[i];
+                    item_month[i].innerHTML = DaysWeather.getDateOfWeek()[i];
+                    item_img[i].src = DailyWeather.getDailyIcons()[i];
+                    item_degrees[i].innerHTML = DailyWeather.getDailyTemp()[i];
+                    item_precipitation[i].innerHTML = DailyWeather.getDailyDescription()[i];
+                }
+            }, 1000);
         }
     }
     

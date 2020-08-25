@@ -1,4 +1,5 @@
-import { CurrentWeather, HourlyWeather, Wind } from './Weather.js';
+import { CurrentWeather, HourlyWeather, Wind, DailyWeather} from './Weather.js';
+import { DaysWeather } from './DateComponent.js';
 
 
 export class Initialization {
@@ -22,7 +23,11 @@ export class Initialization {
             HourlyWeather.setTemperaturesFeel(data);
             Wind.setWindSpeed(data);
             Wind.setWindDirection(data);
-            // console.log(this.CurrentWeather.getCurrentTemperature());
+            DaysWeather.setDayOfWeek(data);
+            DaysWeather.setDateOfWeek(data);
+            DailyWeather.setDailyIcons(data);
+            DailyWeather.setDailyTemp(data);
+            DailyWeather.setDailyDescription(data);
         });
     }
 }

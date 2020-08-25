@@ -16,3 +16,10 @@ let hourly_temperature_feel = document.getElementsByClassName('hourly-temperatur
 let hourly_wind = document.getElementsByClassName('hourly-wind');
 let today_link = document.getElementById('today-link');
 let five_day_link = document.getElementById('five-day-link');
+let item_month = document.getElementsByClassName('item-month');
+let item_img = document.getElementsByClassName('item-img');
+let item_degrees = document.getElementsByClassName('item-degrees');
+let item_precipitation = document.getElementsByClassName('item-precipitation');
+
+
+// let item_title = document.getElementsByClassName('item-title');
