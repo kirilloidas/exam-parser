@@ -98,7 +98,7 @@ section{
     height: 80px;
     width: 80px;
 }
-.current-weather-text-under-icon{
+.current-weather-description{
     font-size: 25px;
     color: #4a4949;
 }
@@ -182,6 +182,15 @@ section{
     width: 60px;
     height: 60px;
     margin-bottom: 25px;
+}
+.hourly-weather-list-titles__item-block{
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 25px;
+}
+.hourly-description, .hourly-temperature, .hourly-temperature-feel{
+    margin: 0;
 }
 .hourly-weather-list-titles :last-child {
     margin-bottom: 0;
