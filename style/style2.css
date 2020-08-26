@@ -165,3 +165,6 @@ section{
 .hourly-weather-list-values :last-child {
     margin-bottom: 0;
 }
+.hourly-description, .hourly-temperature, .hourly-temperature-feel, .hourly-wind{
+    margin: 0;
+}
