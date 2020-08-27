@@ -1,6 +1,5 @@
 import { CurrentWeather, HourlyWeather, Wind, DailyWeather} from './Weather.js';
 import { DaysWeather } from './DateComponent.js';
-import { NearbyPlaces } from './NearbyPlaces.js';
 
 
 export class Initialization {
@@ -10,7 +9,6 @@ export class Initialization {
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=b352df7456cbd31cf07f70660e3eb572`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             CurrentWeather.setCurrentIcon(data);
             CurrentWeather.setCurrentDescription(data);
             CurrentWeather.setCurrentTemperature(data);
@@ -29,7 +27,6 @@ export class Initialization {
             DailyWeather.setDailyIcons(data);
             DailyWeather.setDailyTemp(data);
             DailyWeather.setDailyDescription(data);
-            NearbyPlaces.initializationPlaces(lat,lon);
         });
     }
 }

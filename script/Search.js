@@ -1,5 +1,6 @@
 import { Initialization } from './Initialization.js';
 import { CurrentWeather, HourlyWeather, Wind } from './Weather.js';
+import { NearbyPlaces } from './NearbyPlaces.js';
 
 export class Search {
     constructor() {
@@ -17,6 +18,7 @@ export class Search {
         })
         .then(data => {
                 Initialization.initializationAjax(data.coord.lat, data.coord.lon);
+                NearbyPlaces.initializationPlaces(data.coord.lat, data.coord.lon);
         })
         // .catch(
         //     document.location.href = './404-error.html'
