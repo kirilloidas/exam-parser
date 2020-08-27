@@ -1,3 +1,5 @@
+import { DaysWeather } from './DateComponent.js';
+
 export class CurrentWeather {
     constructor() {
         this._currentWeatherIcon,
@@ -228,7 +230,8 @@ export class DailyWeather {
     constructor() {
         this._dailyIcons,
         this._dailyTemp,
-        this._dailyDescription      
+        this._dailyDescription,
+        this._hourlyWeather     
     }
 
     static setDailyIcons(weather) {
@@ -265,5 +268,70 @@ export class DailyWeather {
 
     static getDailyDescription() {
         return this._dailyDescription;
+    }
+
+    static setHourlyWeather(weather, day) {
+        // if(day === undefined) {
+        //     day = 0;
+        // }
+        day = day | 0;
+        let daysUTC = DaysWeather.getDateUTC();
+        let arrHourlyWeather = [];
+
+        if(day == 0) {
+            let j = 0
+            for(let i = 0; i < weather.list.length; i++) {
+                if(daysUTC[day] == weather.list[i].dt) {
+                    console.log('error');
+                    break;
+                }
+                arrHourlyWeather[j] = {
+                    dt: weather.list[i].dt,
+                    icon: `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`,
+                    description: weather.list[i].weather[0].main,
+                    temp: weather.list[i].main.temp,
+                    tempFeel: weather.list[i].main.feels_like
+                };
+                // dt[day][j] = weather.list[i].dt;
+                // icons[day][j] = `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`;
+                // description[day][j] = weather.list[i].weather[0].main;
+                // temp[day][j] = weather.list[i].main.temp;
+                // tempFeel[day][j] = weather.list[i].main.feels_like;
+                j++;
+                console.log(arrHourlyWeather);
+                this._hourlyWeather = arrHourlyWeather;
+
+            }
+        } else if(day > 0) {
+            let a = 0;
+            for(let i = 0; i < weather.list.length; i++) {
+                if(daysUTC[day] - 86400 > weather.list[i].dt) {
+                    continue;
+                } else if(daysUTC[day] == weather.list[i].dt) {
+                    break;
+                } else {
+                    arrHourlyWeather[a] = {
+                        dt: weather.list[i].dt,
+                        icon: `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`,
+                        description: weather.list[i].weather[0].main,
+                        temp: weather.list[i].main.temp,
+                        tempFeel: weather.list[i].main.feels_like
+                    };
+                    // dt[a] = weather.list[i].dt;
+                    // icons[a] = `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`;
+                    // description[a] = weather.list[i].weather[0].main;
+                    // temp[a] = weather.list[i].main.temp;
+                    // tempFeel[a] = weather.list[i].main.feels_like;
+                    a++;
+                }
+                
+            }
+            console.log(arrHourlyWeather);
+            this._hourlyWeather = arrHourlyWeather;
+        }
+    }
+
+    static getHourlyWeather() {
+        return this._hourlyWeather;
     }
 }

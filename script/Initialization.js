@@ -3,9 +3,12 @@ import { DaysWeather } from './DateComponent.js';
 
 
 export class Initialization {
-    constructor() {}
+    constructor() {
+        this._city
+    }
 
-    static initializationAjax(lat, lon) {
+    static initializationAjax(lat, lon, city) {
+        this._city = city;
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=b352df7456cbd31cf07f70660e3eb572`)
         .then(response => response.json())
         .then(data => {
@@ -27,6 +30,17 @@ export class Initialization {
             DailyWeather.setDailyIcons(data);
             DailyWeather.setDailyTemp(data);
             DailyWeather.setDailyDescription(data);
+        });
+
+        
+    }
+
+    static initializationHourlyDays(day) {
+        console.log(this._city);
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this._city}&appid=b352df7456cbd31cf07f70660e3eb572`)
+        .then(response => response.json())
+        .then(data => {
+            DailyWeather.setHourlyWeather(data, day);
         });
     }
 }

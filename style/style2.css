@@ -86,6 +86,11 @@ section{
     border-right: 2px solid #dbdbdb;
     width: 20%;
 }
+.weekly-forecast-list__item:hover{
+    cursor: pointer;
+    border: 2px solid silver;
+    box-shadow: 0 0 10px silver;
+}
 .item-title{
     color: #0095A2;
     font-size: 18px;

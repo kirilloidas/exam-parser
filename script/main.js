@@ -5,15 +5,19 @@ import { Search } from './Search.js';
 import { NearbyPlaces } from './NearbyPlaces.js';
 
 window.addEventListener('load', () => {
-
+    
     document.addEventListener('keydown', function(event) {
         if(event.code == 'Enter') {
             Search.setCityCoordinates(header_search.value);
             insert();
         }
     });
+
+    
     
     function insert() {
+        DaysWeather.setDateUTC();
+        console.log(DaysWeather.getDateUTC());
         if(document.title == 'Weater-today') {
             setTimeout(() => {
                     current_weather_icon.src = CurrentWeather.getCurrentIcon();
@@ -41,6 +45,21 @@ window.addEventListener('load', () => {
     
             }, 1000);
         } else if (document.title == '5-day-forecast') {
+
+            forecast_list.addEventListener('click', function(event) {
+                if(event.target.tagName == 'LI') {
+                    Initialization.initializationHourlyDays(event.target.value);
+                    console.log(event.target.value);
+                } else {
+                    Initialization.initializationHourlyDays(event.target.parentNode.value);
+                    setTimeout(() => {
+                        DailyWeather.getHourlyWeather();
+                    }, 2000);
+                    console.log(event.target.parentNode.value);
+                }
+                
+            });
+
             setTimeout(() => {
                 for(let i = 0; i < 5; i++) {
                     item_title[i].innerHTML = DaysWeather.getDayOfWeek()[i];
@@ -49,7 +68,7 @@ window.addEventListener('load', () => {
                     item_degrees[i].innerHTML = DailyWeather.getDailyTemp()[i];
                     item_precipitation[i].innerHTML = DailyWeather.getDailyDescription()[i];
                 }
-            }, 1000);
+            }, 2000);
         }
     }
     
