@@ -2,6 +2,7 @@ import { Initialization } from './Initialization.js';
 import { CurrentWeather, HourlyWeather, Wind, DailyWeather} from './Weather.js';
 import { DateComponent, DaysWeather } from './DateComponent.js';
 import { Search } from './Search.js';
+import { NearbyPlaces } from './NearbyPlaces.js';
 
 window.addEventListener('load', () => {
 
@@ -23,7 +24,12 @@ window.addEventListener('load', () => {
                     current_weather_sunrise.innerHTML = CurrentWeather.getCurrentSunRise();
                     current_weather_sunset.innerHTML = CurrentWeather.getCurrentSunSet();
                     current_weather_duration.innerHTML = CurrentWeather.getCurrentDuration();
-            
+
+                    for(let i = 0; i < name_of_city.length; i++) {
+                        name_of_city[i].innerHTML = NearbyPlaces.getWeatherPlaces()[i].name;
+                        city_img[i].src = NearbyPlaces.getWeatherPlaces()[i].icon;
+                        city_temp[i].innerHTML = NearbyPlaces.getWeatherPlaces()[i].temp;
+                    }
             
                     for(let i = 0; i < hourly_icons.length; i++) {
                         hourly_icons[i].src = HourlyWeather.getIcons()[i];

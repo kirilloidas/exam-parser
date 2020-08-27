@@ -14,7 +14,6 @@ export class Search {
             } else {
                 document.location.href = './404-error.html';
             }
-            
         })
         .then(data => {
                 Initialization.initializationAjax(data.coord.lat, data.coord.lon);

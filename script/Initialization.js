@@ -1,5 +1,6 @@
 import { CurrentWeather, HourlyWeather, Wind, DailyWeather} from './Weather.js';
 import { DaysWeather } from './DateComponent.js';
+import { NearbyPlaces } from './NearbyPlaces.js';
 
 
 export class Initialization {
@@ -28,6 +29,7 @@ export class Initialization {
             DailyWeather.setDailyIcons(data);
             DailyWeather.setDailyTemp(data);
             DailyWeather.setDailyDescription(data);
+            NearbyPlaces.initializationPlaces(lat,lon);
         });
     }
 }
