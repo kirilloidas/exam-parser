@@ -163,61 +163,61 @@ export class Wind {
         this._windDirection
     }
 
-    static setWindSpeed(weather) {
-        let arr = [];
-        let a = 0;
-        for(let i = 0; i < 24; i = i + 4) {
-            arr[a] = weather.hourly[i].wind_speed;
-            a++;
-        }
-        this._windSpeed = arr;
+    static setWindSpeed(weather, i) {
+        // let arr = [];
+        // let a = 0;
+        // for(let i = 0; i < 24; i = i + 4) {
+        //     arr[a] = weather.hourly[i].wind_speed;
+        //     a++;
+        // }
+        this._windSpeed = weather.list[i].wind.speed;
     }
 
     static getWindSpeed() {
         return this._windSpeed;
     }
 
-    static setWindDirection(weather) {
-        let arr = [];
-        let a = 0;
-        for(let i = 0; i < 24; i = i + 4) {
-            let direction = weather.hourly[i].wind_deg;
+    static setWindDirection(weather, i) {
+        // let arr = [];
+        // let a = 0;
+        // for(let i = 0; i < 24; i = i + 4) {
+            let direction = weather.list[i].wind.deg;
             if(direction > 348.75 && direction < 11.25) {
-                arr[a] = 'N';
+                this._windDirection = 'N';
             } else if (direction > 11.25 && direction < 33.75) {
-                arr[a] = 'NNE';
+                this._windDirection = 'NNE';
             } else if (direction > 33.75 && direction < 56.25) {
-                arr[a] = 'NE';
+                this._windDirection = 'NE';
             } else if (direction > 56.25 && direction < 78.75) {
-                arr[a] = 'ENE';
+                this._windDirection = 'ENE';
             } else if (direction > 78.75 && direction < 101.25) {
-                arr[a] = 'E';
+                this._windDirection = 'E';
             } else if (direction > 101.25 && direction < 123.75) {
-                arr[a] = 'ESE';
+                this._windDirection = 'ESE';
             } else if (direction > 123.75 && direction < 146.25) {
-                arr[a] = 'SE';
+                this._windDirection= 'SE';
             } else if (direction > 146.25 && direction < 168.75) {
-                arr[a] = 'SSE';
+                this._windDirection = 'SSE';
             } else if (direction > 168.75 && direction < 191.25) {
-                arr[a] = 'S';
+                this._windDirection = 'S';
             } else if (direction > 191.25 && direction < 213.75) {
-                arr[a] = 'SSW';
+                this._windDirection = 'SSW';
             } else if (direction > 213.75 && direction < 236.25) {
-                arr[a] = 'SW';
+                this._windDirection = 'SW';
             } else if (direction > 236.25 && direction < 258.75) {
-                arr[a] = 'WSW';
+                this._windDirection = 'WSW';
             } else if (direction > 258.75 && direction < 281.25) {
-                arr[a] = 'W';
+                this._windDirection = 'W';
             } else if (direction > 281.25 && direction < 303.75) {
-                arr[a] = 'WNW';
+                this._windDirection = 'WNW';
             } else if (direction > 303.75 && direction < 326.25) {
-                arr[a] = 'NW';
+                this._windDirection = 'NW';
             } else if (direction > 326.25 && direction < 348.75) {
-                arr[a] = 'NNW';
+                this._windDirection = 'NNW';
             }
-            a++;
-        }
-        this._windDirection = arr;
+            // a++;
+        // }
+        // this._windDirection = arr;
     }
 
     static getWindDirection() {
@@ -285,13 +285,17 @@ export class DailyWeather {
                     console.log('error');
                     break;
                 }
+                Wind.setWindSpeed(weather, i);
+                Wind.setWindDirection(weather, i);
                 arrHourlyWeather[j] = {
                     dt: `${new Date(weather.list[i].dt * 1000).getHours()}:${new Date(weather.list[i].dt * 1000).getMinutes()}`,
                     icon: `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`,
                     description: weather.list[i].weather[0].main,
                     temp: `${(parseFloat(weather.list[i].main.temp) - 273.15).toFixed(0)} &#8451`,
-                    tempFeel: `${(parseFloat(weather.list[i].main.feels_like) - 273.15).toFixed(0)} &#8451`
+                    tempFeel: `${(parseFloat(weather.list[i].main.feels_like) - 273.15).toFixed(0)} &#8451`,
+                    wind: `${Wind.getWindSpeed()} ${Wind.getWindDirection()}`
                 };
+                console.log(Wind.getWindSpeed());
                 j++;
                 console.log(arrHourlyWeather);
                 this._hourlyWeather = arrHourlyWeather;
@@ -305,12 +309,15 @@ export class DailyWeather {
                 } else if(daysUTC[day] == weather.list[i].dt) {
                     break;
                 } else {
+                    Wind.setWindSpeed(weather, i);
+                    Wind.setWindDirection(weather, i);
                     arrHourlyWeather[a] = {
                         dt: `${new Date(weather.list[i].dt * 1000).getHours()}:${new Date(weather.list[i].dt * 1000).getMinutes()}`,
                         icon: `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`,
                         description: weather.list[i].weather[0].main,
                         temp: `${(parseFloat(weather.list[i].main.temp) - 273.15).toFixed(0)} &#8451`,
-                        tempFeel: `${(parseFloat(weather.list[i].main.feels_like) - 273.15).toFixed(0)} &#8451`
+                        tempFeel: `${(parseFloat(weather.list[i].main.feels_like) - 273.15).toFixed(0)} &#8451`,
+                        wind: `${Wind.getWindSpeed()} ${Wind.getWindDirection()}`
                     };
                     a++;
                 }

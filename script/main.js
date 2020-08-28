@@ -35,15 +35,23 @@ window.addEventListener('load', () => {
                         city_temp[i].innerHTML = NearbyPlaces.getWeatherPlaces()[i].temp;
                     }
             
-                    for(let i = 0; i < hourly_icons.length; i++) {
-                        hourly_icons[i].src = HourlyWeather.getIcons()[i];
-                        hourly_description[i].innerHTML = HourlyWeather.getDescriptions()[i];
-                        hourly_temperature[i].innerHTML = HourlyWeather.getTemperatures()[i];
-                        hourly_temperature_feel[i].innerHTML = HourlyWeather.getTemperaturesFeel()[i];
-                        hourly_wind[i].innerHTML = `${Wind.getWindSpeed()[i]} ${Wind.getWindDirection()[i]}`;
-                    }
-    
-            }, 1000);
+                    Initialization.initializationHourlyDays(0);
+                    setTimeout(() => {
+                        for(let i = 0; i < DailyWeather.getHourlyWeather().length; i++) {
+                            if(DailyWeather.getHourlyWeather().length == hourly_icons.length) {
+                                break;
+                            }
+                            hourly_date[i].innerHTML = DailyWeather.getHourlyWeather()[i].dt;
+                            hourly_icons[i].src = DailyWeather.getHourlyWeather()[i].icon;
+                            hourly_description[i].innerHTML = DailyWeather.getHourlyWeather()[i].description;
+                            hourly_temperature[i].innerHTML = DailyWeather.getHourlyWeather()[i].temp;
+                            hourly_temperature_feel[i].innerHTML = DailyWeather.getHourlyWeather()[i].tempFeel;
+                            hourly_wind[i].innerHTML = DailyWeather.getHourlyWeather()[i].wind;
+                        }
+                    }, 1200);
+                    
+            }, 1200);
+            
         } else if (document.title == '5-day-forecast') {
 
             forecast_list.addEventListener('click', function(event) {
@@ -59,6 +67,7 @@ window.addEventListener('load', () => {
                             hourly_description[i].innerHTML = DailyWeather.getHourlyWeather()[i].description;
                             hourly_temperature[i].innerHTML = DailyWeather.getHourlyWeather()[i].temp;
                             hourly_temperature_feel[i].innerHTML = DailyWeather.getHourlyWeather()[i].tempFeel;
+                            hourly_wind[i].innerHTML = DailyWeather.getHourlyWeather()[i].wind;
                         }
                         console.log(DailyWeather.getHourlyWeather());
                     }, 2000);
@@ -75,6 +84,7 @@ window.addEventListener('load', () => {
                             hourly_description[i].innerHTML = DailyWeather.getHourlyWeather()[i].description;
                             hourly_temperature[i].innerHTML = DailyWeather.getHourlyWeather()[i].temp;
                             hourly_temperature_feel[i].innerHTML = DailyWeather.getHourlyWeather()[i].tempFeel;
+                            hourly_wind[i].innerHTML = DailyWeather.getHourlyWeather()[i].wind;
                         };
                     }, 2000);
                     console.log(event.target.parentNode.value);

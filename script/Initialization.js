@@ -23,8 +23,8 @@ export class Initialization {
             HourlyWeather.setDescritpions(data);
             HourlyWeather.setTemperatures(data);
             HourlyWeather.setTemperaturesFeel(data);
-            Wind.setWindSpeed(data);
-            Wind.setWindDirection(data);
+            // Wind.setWindSpeed(data);
+            // Wind.setWindDirection(data);
             DaysWeather.setDayOfWeek(data);
             DaysWeather.setDateOfWeek(data);
             DailyWeather.setDailyIcons(data);

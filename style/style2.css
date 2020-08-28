@@ -170,6 +170,6 @@ section{
 .hourly-weather-list-values :last-child {
     margin-bottom: 0;
 }
-.hourly-description, .hourly-temperature, .hourly-temperature-feel, .hourly-wind{
+.hourly-description, .hourly-temperature, .hourly-temperature-feel, .hourly-wind, .hourly-date{
     margin: 0;
 }
