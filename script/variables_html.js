@@ -24,6 +24,7 @@ let name_of_city = document.getElementsByClassName('name-of-city');
 let city_img = document.getElementsByClassName('nearby-places-city__img');
 let city_temp = document.getElementsByClassName('nearby-places-city__degrees');
 let forecast_list = document.getElementsByClassName('weekly-forecast-list')[0];
+let hourly_date = document.getElementsByClassName('hourly-date');
 
 
 // let item_title = document.getElementsByClassName('item-title');

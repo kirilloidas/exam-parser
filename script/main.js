@@ -49,11 +49,33 @@ window.addEventListener('load', () => {
             forecast_list.addEventListener('click', function(event) {
                 if(event.target.tagName == 'LI') {
                     Initialization.initializationHourlyDays(event.target.value);
+                    setTimeout(() => {
+                        for(let i = 0; i < DailyWeather.getHourlyWeather().length; i++) {
+                            if(DailyWeather.getHourlyWeather().length == hourly_icons.length) {
+                                break;
+                            }
+                            hourly_date[i].innerHTML = DailyWeather.getHourlyWeather()[i].dt;
+                            hourly_icons[i].src = DailyWeather.getHourlyWeather()[i].icon;
+                            hourly_description[i].innerHTML = DailyWeather.getHourlyWeather()[i].description;
+                            hourly_temperature[i].innerHTML = DailyWeather.getHourlyWeather()[i].temp;
+                            hourly_temperature_feel[i].innerHTML = DailyWeather.getHourlyWeather()[i].tempFeel;
+                        }
+                        console.log(DailyWeather.getHourlyWeather());
+                    }, 2000);
                     console.log(event.target.value);
                 } else {
                     Initialization.initializationHourlyDays(event.target.parentNode.value);
                     setTimeout(() => {
-                        DailyWeather.getHourlyWeather();
+                        for(let i = 0; i < DailyWeather.getHourlyWeather().length; i++) {
+                            if(DailyWeather.getHourlyWeather().length == hourly_icons.length) {
+                                break;
+                            }
+                            hourly_date[i].innerHTML = DailyWeather.getHourlyWeather()[i].dt;
+                            hourly_icons[i].src = DailyWeather.getHourlyWeather()[i].icon;
+                            hourly_description[i].innerHTML = DailyWeather.getHourlyWeather()[i].description;
+                            hourly_temperature[i].innerHTML = DailyWeather.getHourlyWeather()[i].temp;
+                            hourly_temperature_feel[i].innerHTML = DailyWeather.getHourlyWeather()[i].tempFeel;
+                        };
                     }, 2000);
                     console.log(event.target.parentNode.value);
                 }

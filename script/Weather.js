@@ -286,17 +286,12 @@ export class DailyWeather {
                     break;
                 }
                 arrHourlyWeather[j] = {
-                    dt: weather.list[i].dt,
+                    dt: `${new Date(weather.list[i].dt * 1000).getHours()}:${new Date(weather.list[i].dt * 1000).getMinutes()}`,
                     icon: `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`,
                     description: weather.list[i].weather[0].main,
-                    temp: weather.list[i].main.temp,
-                    tempFeel: weather.list[i].main.feels_like
+                    temp: `${(parseFloat(weather.list[i].main.temp) - 273.15).toFixed(0)} &#8451`,
+                    tempFeel: `${(parseFloat(weather.list[i].main.feels_like) - 273.15).toFixed(0)} &#8451`
                 };
-                // dt[day][j] = weather.list[i].dt;
-                // icons[day][j] = `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`;
-                // description[day][j] = weather.list[i].weather[0].main;
-                // temp[day][j] = weather.list[i].main.temp;
-                // tempFeel[day][j] = weather.list[i].main.feels_like;
                 j++;
                 console.log(arrHourlyWeather);
                 this._hourlyWeather = arrHourlyWeather;
@@ -311,17 +306,12 @@ export class DailyWeather {
                     break;
                 } else {
                     arrHourlyWeather[a] = {
-                        dt: weather.list[i].dt,
+                        dt: `${new Date(weather.list[i].dt * 1000).getHours()}:${new Date(weather.list[i].dt * 1000).getMinutes()}`,
                         icon: `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`,
                         description: weather.list[i].weather[0].main,
-                        temp: weather.list[i].main.temp,
-                        tempFeel: weather.list[i].main.feels_like
+                        temp: `${(parseFloat(weather.list[i].main.temp) - 273.15).toFixed(0)} &#8451`,
+                        tempFeel: `${(parseFloat(weather.list[i].main.feels_like) - 273.15).toFixed(0)} &#8451`
                     };
-                    // dt[a] = weather.list[i].dt;
-                    // icons[a] = `http://openweathermap.org/img/wn/${weather.list[i].weather[0].icon}@2x.png`;
-                    // description[a] = weather.list[i].weather[0].main;
-                    // temp[a] = weather.list[i].main.temp;
-                    // tempFeel[a] = weather.list[i].main.feels_like;
                     a++;
                 }
                 
