@@ -59,7 +59,7 @@ window.addEventListener('load', () => {
                     Initialization.initializationHourlyDays(event.target.value);
                     setTimeout(() => {
                         for(let i = 0; i < DailyWeather.getHourlyWeather().length; i++) {
-                            if(DailyWeather.getHourlyWeather().length == hourly_icons.length) {
+                            if(i == hourly_icons.length) {
                                 break;
                             }
                             hourly_date[i].innerHTML = DailyWeather.getHourlyWeather()[i].dt;
@@ -76,7 +76,7 @@ window.addEventListener('load', () => {
                     Initialization.initializationHourlyDays(event.target.parentNode.value);
                     setTimeout(() => {
                         for(let i = 0; i < DailyWeather.getHourlyWeather().length; i++) {
-                            if(DailyWeather.getHourlyWeather().length == hourly_icons.length) {
+                            if(i == hourly_date.length) {
                                 break;
                             }
                             hourly_date[i].innerHTML = DailyWeather.getHourlyWeather()[i].dt;
