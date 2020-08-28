@@ -10,7 +10,8 @@ export class DateComponent{
 export class DaysWeather {
     constructor() {
         this._daysOfWeek,
-        this._dateOfWeek
+        this._dateOfWeek,
+        this._daysUTC
     }
 
     static setDayOfWeek(weather) {
@@ -60,6 +61,25 @@ export class DaysWeather {
 
     static getDateOfWeek() {
         return this._dateOfWeek;
+    }
+
+    static setDateUTC() {
+        let arrOfDate = [];
+        let j = 0;
+        let today = new Date();
+        for(let i = 1; i < 5; i++) {
+            let dd = today.getDate() + i;
+            let mm = today.getMonth() + 1;
+            let yyyy = today.getFullYear();
+            let date = new Date(`${yyyy}, ${mm}, ${dd}`);
+            arrOfDate[j] = Math.round((date.getTime() + 10800000) / 1000);
+            j++; 
+        }
+        this._daysUTC = arrOfDate;
+    }
+
+    static getDateUTC() {
+        return this._daysUTC;
     }
 
 }
